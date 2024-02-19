@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { Text, View, FlatList, SectionList } from "react-native";
 
-import { CATEGORIES, MENU } from "@/src/utils/data/products"
+import { CATEGORIES, MENU, ProductProps } from "@/src/utils/data/products"
 
 import CategoryButton from "@/src/components/CategoryButton";
 import Header from "@/src/components/Header";
@@ -13,7 +13,7 @@ export default function Home() {
   const cartStore = useCartStore()
   const [category, setCategory] = useState(CATEGORIES[0])
 
-  const sectionListRef = useRef<SectionList>(null)
+  const sectionListRef = useRef<SectionList<ProductProps>>(null)
 
   const cartQuantityItems = cartStore.products.reduce((total, product) => total + product.quantity, 0)
 
