@@ -1,11 +1,13 @@
 import { forwardRef } from "react";
 import { Image, ImageProps, Text, TouchableOpacity, TouchableOpacityProps, View } from "react-native";
+import { formatCurrency } from "../utils/data/functions/format-currency";
 
 type ProductDataProps = {
   title: string
   description: string
   thumbnail: ImageProps
   quantity?: number
+  price: number
 }
 
 type ProductProps = TouchableOpacityProps & {
@@ -27,9 +29,15 @@ type ProductProps = TouchableOpacityProps & {
 
       <View className="flex-1 ml-3">
         <View className="flex-row items-center">
-          <Text className="text-slate-100 font-subtitle text-base flex-1">
-            {data.title}
-          </Text>
+          <View className="flex-1 flex-row gap-2 items-center">
+            <Text className="text-slate-100 font-subtitle text-base">
+              {data.title}
+            </Text>
+
+            <Text className="text-slate-100 font-subtitle text-xs pt-1">
+              {formatCurrency(data.price)}
+            </Text>
+          </View>
 
           {data.quantity && (
             <Text className="text-slate-400 font-subtitle text-sm">
